@@ -9,7 +9,7 @@ import math
 import os
 
 
-app = Flask('testapp') 
+app = Flask('SystemStats') 
 
 @app.route('/')
 def index():
