@@ -17,6 +17,7 @@ app = Flask('testapp')
 @app.route('/')
 def index():
     data = {
+         "time": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
          "ip": socket.gethostbyname(socket.gethostname()),
          "hostname": socket.gethostname(),
          "domain": ".lcl",
@@ -32,7 +33,7 @@ def index():
          "cpu": psutil.cpu_percent(interval=None, percpu=False)
       }
     
-    return render_template('index.html', refreshrate=7, hostname=data['hostname'], get_local_ip=data['ip'], get_os_version=data['os_version'], get_ram_gb=data['ram_used'], get_storage_used=data['storage_used'], get_storage_tot=data['sorage_tot'], cpu=data['cpu'], ram_used_percent=data['ram_used_percent'], storage_percent=data['storage_percent'], ram_tot=data['ram_tot'], storage_path=data['storage_path'])
+    return render_template('index.html', refreshrate=1, hostname=data['hostname'], get_local_ip=data['ip'], get_os_version=data['os_version'], get_ram_gb=data['ram_used'], get_storage_used=data['storage_used'], get_storage_tot=data['sorage_tot'], cpu=data['cpu'], ram_used_percent=data['ram_used_percent'], storage_percent=data['storage_percent'], ram_tot=data['ram_tot'], storage_path=data['storage_path'], time=data['time'])
 
 
 if __name__ == '__main__':

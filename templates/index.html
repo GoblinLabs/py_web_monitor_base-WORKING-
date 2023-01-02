@@ -2,7 +2,7 @@
     <meta http-equiv="refresh" content='{{ refreshrate }}'>
     <title>{{ hostname }} Data Monitor.</title>
 <body>
-    <p></p>
+    <p>{{ time }}</p>
     <br>
     <a id="uno" class="family bold">HOSTNAME: {{ hostname }}</a>
     <br>
@@ -61,8 +61,6 @@
 }
 
 
-
-
 .family{
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -71,12 +69,6 @@
     font-size: large;
 }
 </style>   
-<script>
-
-var url = 'http://{{ hostname }}/{{ path }}';
-var test = 'test';
-document.getElementById('cpupercent').style.width = '{{ storage_percent }}%';
-</script>    
-    
+<script></script>
 </body>
 </html>
