@@ -1,21 +1,23 @@
 <html>
     <meta http-equiv="refresh" content='{{ refreshrate }}'>
-    <title>TEST</title>
+    <title>{{ hostname }} Data Monitor.</title>
 <body>
-    <p>Test</p>
+    <p></p>
+    <br>
+    <a id="uno" class="family bold">HOSTNAME: {{ hostname }}</a>
     <br>
     <br>
-    <a id="uno" class="uno">HOSTNAME: {{ hostname }}</a>
+    <a id="uno" class="family bold">LOCAL IP: {{ get_local_ip }}</a>
     <br>
-    <a id="uno" class="uno">LOCAL IP: {{ get_local_ip }}</a>
     <br>
-    <a id="uno" class="uno">OS: {{ get_os_version }}</a>
+    <a id="uno" class="family bold">OS: {{ get_os_version }}</a>
     <br>
-    <a id="uno" class="uno">RAM: {{ get_ram_gb }} GB</a> <div class="cpuload" style="width: 300px; height: 10px; border-style: solid;"><div class="cpupercent" style="height: 100%; width: {{ ram_used_percent }}%; background-color: green;"></div></div>
     <br>
-    <a id="uno" class="uno">CPU: {{ cpu }} %</a> <div class="cpuload" style="width: 300px; height: 10px; border-style: solid;"><div class="cpupercent" style="height: 100%; width: {{ cpu }}%; background-color: green;"></div></div>
+    <a id="uno" class="family bold">RAM: {{ get_ram_gb }} GB of {{ ram_tot }} GB</a> <div class="percentbox family"><div class="ramload"></div></div>
     <br>
-    <a id="uno" class="uno">DISK: {{ get_storage_used }} GB of {{ get_storage_tot }} GB</a><a id="uno" class="uno">CPU: {{ cpu }} %</a> <div class="cpuload" style="width: 300px; height: 10px; border-style: solid;"><div class="cpupercent" style="height: 100%; width: {{ cpu }}%; background-color: green;"></div></div>
+    <a id="uno" class="family bold">CPU: {{ cpu }} %</a> <div class="percentbox family" ><div class="cpuload"></div></div>
+    <br>
+    <a id="uno" class="family bold">DISK "{{ storage_path }}": {{ get_storage_used }} GB of {{ get_storage_tot }} GB</a><div class="percentbox family"><div id="cpupercent" class="diskload"></div></div>
     <br>
     
     
@@ -26,12 +28,54 @@
     <a id="uno" class="uno"></a>
     
     
+<style>
+.percentbox{
+    width: 300px; 
+    height: 10px; 
+    border-style: solid;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.ramload{
+    height: 100%; 
+    background-color: blue;
+    border-radius: 5px 5px 5px 5px;
+    width: {{ ram_used_percent }}%;
     
+}
+
+
+.cpuload{
+    height: 100%; 
+    background-color: orangered;
+    border-radius: 5px 5px 5px 5px;
+    width: {{ cpu }}%;
+}
+
+
+.diskload{
+    height: 100%; 
+    background-color: green;
+    border-radius: 5px 5px 5px 5px;
+    width: {{ storage_percent }}%;
+}
+
+
+
+
+.family{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.bold{
+    font-size: large;
+}
+</style>   
 <script>
 
 var url = 'http://{{ hostname }}/{{ path }}';
 var test = 'test';
-document.getElementById('due').innerHTML = url;
+document.getElementById('cpupercent').style.width = '{{ storage_percent }}%';
 </script>    
     
 </body>
