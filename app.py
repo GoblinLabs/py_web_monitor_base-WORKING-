@@ -1,16 +1,12 @@
 from flask import Flask, render_template
-
-import time
-import json
+from requests import get
+import socket
 import time
 import datetime
-import socket
 import psutil
-import time
 import platform
 import math
 import os
-from requests import get
 
 
 app = Flask('testapp') 
@@ -21,11 +17,13 @@ def index():
     get_wanip = get('https://api.ipify.org').content.decode('utf8')
     data = {
          "time": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+         "os_platform": platform.system(),
+         "os_distro": platform.release(),
+         "os_version": platform.version(),
          "ip": socket.gethostbyname(socket.gethostname()),
          "wan_ip": get_wanip,
          "hostname": socket.gethostname(),
          "domain": ".lcl",
-         "os_version": platform.platform(),
          "ram_tot": round(psutil.virtual_memory()[0]/1073741824, 1),
          "ram_used": round(psutil.virtual_memory()[3]/1073741824, 1),
          "ram_used_percent": psutil.virtual_memory().percent,
@@ -41,6 +39,8 @@ def index():
         hostname=data['hostname'], 
         get_local_ip=data['ip'], 
         get_os_version=data['os_version'], 
+        os_platform=data['os_platform'],
+        os_distro=data['os_distro'],
         get_ram_gb=data['ram_used'], 
         get_storage_used=data['storage_used'], 
         get_storage_tot=data['sorage_tot'], 
