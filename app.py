@@ -8,6 +8,8 @@ import platform
 import math
 import os
 
+iconspack = "https://www.flaticon.com/packs/hardware-61"
+
 
 app = Flask('SystemStats') 
 
