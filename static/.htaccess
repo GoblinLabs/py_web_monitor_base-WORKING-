@@ -1,0 +1,8 @@
+
+AuthUserFile ./static/.htpasswd
+
+AuthType Basic
+
+AuthName “Password Protected”
+
+Require valid-user
