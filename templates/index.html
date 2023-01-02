@@ -4,23 +4,23 @@
 <body>
     <p>{{ time }}</p>
     <br>
-    <a id="uno" class="family bold">HOSTNAME: {{ hostname }}</a>
+    <img src="https://cdn-icons-png.flaticon.com/512/3274/3274542.png" alt="HOSTNAME" width="32" height="32"><a id="uno" class="family bold">HOSTNAME: {{ hostname }}</a>
     <br>
     <br>
-    <a id="uno" class="family bold">LAN IP: {{ get_local_ip }}</a>
+    <img src="https://cdn-icons-png.flaticon.com/512/3274/3274696.png" alt="LAN" width="32" height="32"><a id="uno" class="family bold">LAN IP: {{ get_local_ip }}</a>
     <br>
     <br>
-    <a id="uno" class="family bold">WAN IP: {{ wan_ip }}</a>
+    <img src="https://cdn-icons-png.flaticon.com/512/3274/3274696.png" alt="WAN" width="32" height="32"><a id="uno" class="family bold">WAN IP: {{ wan_ip }}</a>
     <br>
     <br>
-    <a id="uno" class="family bold">OS: {{ os_platform }} => {{ os_distro }} / {{ get_os_version }}</a>
+    <img src="https://cdn-icons-png.flaticon.com/512/3274/3274633.png" alt="OS" width="32" height="32"><a id="uno" class="family bold">OS: {{ os_platform }} => {{ os_distro }} / {{ get_os_version }}</a>
     <br>
     <br>
-    <a id="uno" class="family bold">RAM: {{ get_ram_gb }} GB of {{ ram_tot }} GB</a> <div class="percentbox family"><div class="ramload"></div></div>
+    <img src="https://cdn-icons-png.flaticon.com/512/3274/3274607.png" alt="RAM" width="32" height="32"><a id="uno" class="family bold">RAM: {{ get_ram_gb }} GB of {{ ram_tot }} GB</a> <div class="percentbox family"><div class="ramload"></div></div>
     <br>
-    <a id="uno" class="family bold">CPU: {{ cpu }} %</a> <div class="percentbox family" ><div class="cpuload"></div></div>
+    <img src="https://cdn-icons-png.flaticon.com/512/3274/3274561.png" alt="CPU" width="32" height="32"><a id="uno" class="family bold"></a><a id="uno" class="family bold">CPU: {{ cpu }} %</a> <div class="percentbox family" ><div class="cpuload"></div></div>
     <br>
-    <a id="uno" class="family bold">DISK "{{ storage_path }}": {{ get_storage_used }} GB of {{ get_storage_tot }} GB</a><div class="percentbox family"><div id="cpupercent" class="diskload"></div></div>
+    <img src="https://cdn-icons-png.flaticon.com/512/3274/3274574.png" alt="DISK" width="32" height="32"><a id="uno" class="family bold"></a><a id="uno" class="family bold">DISK "{{ storage_path }}": {{ get_storage_used }} GB of {{ get_storage_tot }} GB</a><div class="percentbox family"><div id="cpupercent" class="diskload"></div></div>
     <br>
     
     
