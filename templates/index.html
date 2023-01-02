@@ -1,5 +1,36 @@
 <html>
 <body>
-    <p>Here is my variable: {{ variable }}</p>
+    <p>Test</p>
+    <br>
+    <br>
+    <a id="uno" class="uno">HOSTNAME: {{ hostname }}</a>
+    <br>
+    <a id="uno" class="uno">LOCAL IP: {{ get_local_ip }}</a>
+    <br>
+    <a id="uno" class="uno">OS: {{ get_os_version }}</a>
+    <br>
+    <a id="uno" class="uno">RAM: {{ get_ram_gb }} GB</a>
+    <br>
+    <a id="uno" class="uno">CPU: {{ cpu }} %</a>
+    <br>
+    <a id="uno" class="uno">DISK: {{ get_storage_used }} GB of {{ get_storage_tot }} GB</a>
+    <br>
+    
+    
+    
+    
+    
+    
+    <a id="uno" class="uno"></a>
+    
+    
+    
+<script>
+
+var url = 'http://{{ hostname }}/{{ path }}';
+var test = 'test';
+document.getElementById('due').innerHTML = url;
+</script>    
+    
 </body>
 </html>
