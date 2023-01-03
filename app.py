@@ -18,13 +18,16 @@ def setOsicon(x):
     icon_win = 'https://cdn-icons-png.flaticon.com/512/888/888882.png'
     icon_linux ='https://cdn-icons-png.flaticon.com/512/226/226772.png'
     icon_osx = 'https://cdn-icons-png.flaticon.com/512/888/888841.png'
+    icon_os_general = 'https://cdn-icons-png.flaticon.com/512/3274/3274633.png'
     
     if os_data_name == "Windows":
         icon_link = icon_win
     elif os_data_name == "Linux":
         icon_link = icon_linux
     elif os_data_name == "OSX":
-        icon_link = icon_osx 
+        icon_link = icon_osx
+    else:
+        icon_link = icon_os_general
     
     return icon_link
 
@@ -37,7 +40,7 @@ def index():
     get_wanip = get('https://api.ipify.org').content.decode('utf8')
     data = {
          "time": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-         "os_icon": setOsicon(os_data_name),
+         "os_icon": setOsicon(platform.system()),
          "os_platform": platform.system(),
          "os_distro": platform.release(),
          "os_version": platform.version(),
