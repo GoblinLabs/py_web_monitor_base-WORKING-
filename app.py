@@ -11,6 +11,24 @@ import os
 iconspack = "https://www.flaticon.com/packs/hardware-61"
 
 
+os_data_name = platform.system()
+
+def setOsicon(x):
+    #OS icons
+    icon_win = 'https://cdn-icons-png.flaticon.com/512/888/888882.png'
+    icon_linux ='https://cdn-icons-png.flaticon.com/512/226/226772.png'
+    icon_osx = 'https://cdn-icons-png.flaticon.com/512/888/888841.png'
+    
+    if os_data_name == "Windows":
+        icon_link = icon_win
+    elif os_data_name == "Linux":
+        icon_link = icon_linux
+    elif os_data_name == "OSX":
+        icon_link = icon_osx 
+    
+    return icon_link
+
+
 app = Flask('SystemStats') 
 
 @app.route('/')
@@ -19,6 +37,7 @@ def index():
     get_wanip = get('https://api.ipify.org').content.decode('utf8')
     data = {
          "time": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+         "os_icon": setOsicon(os_data_name),
          "os_platform": platform.system(),
          "os_distro": platform.release(),
          "os_version": platform.version(),
@@ -41,6 +60,7 @@ def index():
         hostname=data['hostname'], 
         get_local_ip=data['ip'], 
         get_os_version=data['os_version'], 
+        os_icon=data['os_icon'],
         os_platform=data['os_platform'],
         os_distro=data['os_distro'],
         get_ram_gb=data['ram_used'], 
