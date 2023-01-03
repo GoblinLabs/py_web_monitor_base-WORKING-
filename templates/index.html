@@ -13,7 +13,7 @@
     <img src="https://cdn-icons-png.flaticon.com/512/3274/3274696.png" alt="WAN" width="32" height="32"><a id="uno" class="family bold">WAN IP: {{ wan_ip }}</a>
     <br>
     <br>
-    <img src="https://cdn-icons-png.flaticon.com/512/3274/3274633.png" alt="OS" width="32" height="32"><a id="uno" class="family bold">OS: {{ os_platform }} => {{ os_distro }} / {{ get_os_version }}</a>
+    <img src="{{ os_icon }}" alt="OS" width="32" height="32"><a id="uno" class="family bold">OS: {{ os_platform }} => {{ os_distro }} / {{ get_os_version }}</a>
     <br>
     <br>
     <img src="https://cdn-icons-png.flaticon.com/512/3274/3274607.png" alt="RAM" width="32" height="32"><a id="uno" class="family bold">RAM: {{ get_ram_gb }} GB of {{ ram_tot }} GB</a> <div class="percentbox family"><div class="ramload"></div></div>
