@@ -7,6 +7,7 @@ import psutil
 import platform
 import math
 import os
+import json
 
 iconspack = "https://www.flaticon.com/packs/hardware-61"
 
@@ -32,9 +33,9 @@ def setOsicon(x):
     return icon_link
 
 
-app = Flask('SystemStats') 
+app = Flask('SystemApi') 
 
-@app.route('/')
+@app.route('/data')
 def index():
 
     get_wanip = get('https://api.ipify.org').content.decode('utf8')
@@ -58,25 +59,9 @@ def index():
          "sorage_tot": round(psutil.disk_usage('/')[0]/1073741824, 0),
          "cpu": psutil.cpu_percent(interval=None, percpu=False)
       }
-    
-    return render_template('index.html', refreshrate=5, 
-        hostname=data['hostname'], 
-        get_local_ip=data['ip'], 
-        get_os_version=data['os_version'], 
-        os_icon=data['os_icon'],
-        os_platform=data['os_platform'],
-        os_distro=data['os_distro'],
-        get_ram_gb=data['ram_used'], 
-        get_storage_used=data['storage_used'], 
-        get_storage_tot=data['sorage_tot'], 
-        cpu=data['cpu'], 
-        ram_used_percent=data['ram_used_percent'], 
-        storage_percent=data['storage_percent'], 
-        ram_tot=data['ram_tot'], 
-        storage_path=data['storage_path'], 
-        time=data['time'], 
-        wan_ip=data['wan_ip'])
-
+    xdata = json.dumps(data)
+    #print(type(data))
+    return str(xdata)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3007)
