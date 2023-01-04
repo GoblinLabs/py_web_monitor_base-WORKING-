@@ -9,10 +9,9 @@ import math
 import os
 import json
 
-os_data_name = platform.system()
-
 def setOsicon(x):
     #OS icons
+    os_data_name = platform.system()
     icon_win = 'https://cdn-icons-png.flaticon.com/512/888/888882.png'
     icon_linux ='https://cdn-icons-png.flaticon.com/512/226/226772.png'
     icon_osx = 'https://cdn-icons-png.flaticon.com/512/888/888841.png'
@@ -32,32 +31,37 @@ def setOsicon(x):
 
 app = Flask('SystemStats')
 
+HOST= '0.0.0.0'
+PORT = 3007
+
+
 @app.route('/')
 def index():
 
-    get_wanip = get('https://api.ipify.org').content.decode('utf8')
+    #get_wanip = get('https://api.ipify.org').content.decode('utf8')
     data = {
-         "time": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-         "os_icon": setOsicon(platform.system()),
-         "os_platform": platform.system(),
-         "os_distro": platform.release(),
-         "os_version": platform.version(),
-         "ip": socket.gethostbyname(socket.gethostname()),
-         "wan_ip": get_wanip,
-         "hostname": socket.gethostname(),
-         "domain": ".lcl",
-         "ram_tot": round(psutil.virtual_memory()[0]/1073741824, 1),
-         "ram_used": round(psutil.virtual_memory()[3]/1073741824, 1),
-         "ram_used_percent": psutil.virtual_memory().percent,
-         "storage_path": "/",
-         "storage_percent": psutil.disk_usage('/')[3],
-         "storage_free": round(psutil.disk_usage('/')[2]/1073741824, 0),
-         "storage_used": round(psutil.disk_usage('/')[1]/1073741824, 0),
-         "sorage_tot": round(psutil.disk_usage('/')[0]/1073741824, 0),
-         "cpu": psutil.cpu_percent(interval=None, percpu=False)
-      }
+        "time": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "os_icon": setOsicon(platform.system()),
+        "os_platform": platform.system(),
+        "os_distro": platform.release(),
+        "os_version": platform.version(),
+        "ip": socket.gethostbyname(socket.gethostname()),
+        "wan_ip": get('https://api.ipify.org').content.decode('utf8'),
+        "hostname": socket.gethostname(),
+        "domain": ".lcl",
+        "ram_tot": round(psutil.virtual_memory()[0]/1073741824, 1),
+        "ram_used": round(psutil.virtual_memory()[3]/1073741824, 1),
+        "ram_used_percent": psutil.virtual_memory().percent,
+        "storage_path": "/",
+        "storage_percent": psutil.disk_usage('/')[3],
+        "storage_free": round(psutil.disk_usage('/')[2]/1073741824, 0),
+        "storage_used": round(psutil.disk_usage('/')[1]/1073741824, 0),
+        "sorage_tot": round(psutil.disk_usage('/')[0]/1073741824, 0),
+        "cpu": psutil.cpu_percent(interval=None, percpu=False)
+        }
     
-    return render_template('index.html', refreshrate=5, 
+    return render_template('index.html', 
+        refreshrate=5, 
         hostname=data['hostname'], 
         get_local_ip=data['ip'], 
         get_os_version=data['os_version'], 
@@ -76,4 +80,4 @@ def index():
         wan_ip=data['wan_ip'])
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=3007)
+    app.run(host=HOST, port=PORT)
