@@ -9,9 +9,6 @@ import math
 import os
 import json
 
-iconspack = "https://www.flaticon.com/packs/hardware-61"
-
-
 os_data_name = platform.system()
 
 def setOsicon(x):
