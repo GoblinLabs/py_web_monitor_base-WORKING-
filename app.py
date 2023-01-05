@@ -60,6 +60,7 @@ def index():
         "cpu": psutil.cpu_percent(interval=None, percpu=False)
         }
     
+    
     return render_template('index.html', 
         refreshrate=5, 
         hostname=data['hostname'], 
