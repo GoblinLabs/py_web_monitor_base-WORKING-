@@ -1,7 +1,11 @@
 import time
-import pkg_memory
+from pkgs.pkg_memory import *
+from mail_sender import *
+
+
+
 
 while True:
-    checkMemory()
-        
+
+    checkMemory()    
     time.sleep(1)
